@@ -41,14 +41,16 @@ Command-line Options
 - ``--name``: Optionally specify the name for the saved PDF file.
 - ``--min-similarity``: Set the minimum title similarity threshold (default: 80).
 - ``--delay``: Set a delay between API requests to avoid rate limiting (default: 1 second).
-- ``--quiet``: Enable quiet mode to suppress non-error logs.
+- ``--log``: Enable logging to track detailed information during execution.
+- ``--log-file``: Specify the file to write logs to if logging is enabled (default: ``~/gmap.log``).
+- ``--quiet``: Enable quiet mode to suppress non-critical console output.
 
 Example
 -------
 
 .. code-block:: bash
 
-    gmap "A Study on Quantum Computing" --output-dir ./papers --name quantum_paper.pdf --min-similarity 85
+    gmap "Simplicial Hopfield networks" --output-dir="/home/b/downloads"
 
 Configuration
 -------------
