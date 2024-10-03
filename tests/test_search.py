@@ -1,7 +1,5 @@
-import pytest
 from unittest.mock import patch, MagicMock
 from gmap.search import fetch_paper_by_title
-from gmap.download import download_pdf
 from tests.fixtures import get_mock_openalex_work, get_mock_openalex_no_pdf
 
 

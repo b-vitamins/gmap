@@ -1,9 +1,11 @@
 import argparse
 import logging
+import os
 from .search import fetch_paper_by_title
 
 
 def main():
+    # Argument parser for the command-line interface
     parser = argparse.ArgumentParser(
         description=(
             "Get Me A Paper (gmap): Fetch scholarly papers by title using OpenAlex"
@@ -32,20 +34,35 @@ def main():
         help="Delay between API requests (default: 1 second)",
     )
     parser.add_argument(
+        "--log", action="store_true", help="Enable logging (to file or console)"
+    )
+    parser.add_argument(
+        "--log-file",
+        type=str,
+        default=os.path.expanduser("~/gmap.log"),
+        help="File to write logs to if --log is specified. Defaults to '~/gmap.log'",
+    )
+    parser.add_argument(
         "--quiet",
         action="store_true",
-        help="Run in quiet mode (suppress non-error logs)",
+        help="Run in quiet mode (suppress non-critical console output)",
     )
 
     args = parser.parse_args()
 
-    # Setup logging based on --quiet flag
-    if args.quiet:
-        logging.basicConfig(level=logging.CRITICAL)  # Only show critical errors
-    else:
+    # Logging setup based on --log and --log-file
+    if args.log:
         logging.basicConfig(
-            level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+            filename=args.log_file,
+            level=logging.INFO,
+            format="%(asctime)s - %(levelname)s - %(message)s",
         )
+        logging.info(f"Logging initiated, writing logs to {args.log_file}")
+    else:
+        # No logging unless --log is specified
+        logging.basicConfig(
+            level=logging.CRITICAL
+        )  # Suppresses everything except critical logs
 
     # Call the main function to fetch and download the paper
     fetch_paper_by_title(

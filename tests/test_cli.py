@@ -1,4 +1,3 @@
-import pytest
 import argparse
 from unittest.mock import patch
 from gmap.cli import main
@@ -15,6 +14,8 @@ def test_main(mock_parse_args, mock_fetch_paper):
         min_similarity=80,
         delay=1,
         quiet=False,
+        log=False,  # Add this missing argument
+        log_file=None,  # Add this missing argument (you can set a default)
     )
 
     # Run the CLI main function

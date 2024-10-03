@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch, MagicMock
 from gmap.download import download_pdf
 
