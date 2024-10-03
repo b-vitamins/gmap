@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "gmap"
+version = "0.1.0"
+description = "Get Me A Paper (gmap): A command-line tool to fetch academic papers by title"
+authors = ["Ayan Das <bvits@riseup.net>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "gmap"}]  # Only include the "gmap" package, not "tests"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.26.0"
+fuzzywuzzy = "^0.18.0"
+pyalex = "^0.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^3.0.0"  # Add pytest-cov for test coverage
+flake8 = "^4.0.0"
+black = "^22.0"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.poetry.scripts]
+gmap = "gmap.cli:main"  # Define the command-line tool entry point
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
