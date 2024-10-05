@@ -67,8 +67,10 @@ def fetch_paper_by_title(
                 pdf_url = construct_arxiv_pdf_url(landing_page_url)
 
             if pdf_url:
+                # Use pdf_name if provided, otherwise fallback to work_id
                 work_id = best_match["id"].split("/")[-1]
-                save_path = os.path.join(output_dir, f"{work_id}.pdf")
+                final_pdf_name = f"{pdf_name}.pdf" if pdf_name else f"{work_id}.pdf"
+                save_path = os.path.join(output_dir, final_pdf_name)
 
                 time.sleep(delay)
                 download_pdf(pdf_url, save_path, delay)
